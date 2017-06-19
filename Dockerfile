@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN apt update
 
-RUN apt install -y --no-install-recommends qemu-system-arm bsdtar curl
+RUN apt install -y --no-install-recommends qemu-system-arm bsdtar && apt install -y curl
 
 ENV ARCH=arm
 ENV CROSS_COMPILE=arm-linux-gnueabi-
