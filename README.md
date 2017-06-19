@@ -1,4 +1,8 @@
-# darmbian
-docker with armbian
+# Docker container with qemu emulator for armbian
+This container include linux kernel build configuration and qemu for arm
 
-docker run -ti -v ~/work/rpi/kkt.qcow2:/rpi/kkt.qcow2 -p2222:22 -p3333:3333 -p4444:4444 kkt
+To run emulation you will need armbian image: https://www.armbian.com/orange-pi-zero/
+
+```bash
+run -ti -v <path to armbian image>:/rpi/armbian.img kkt
+```
