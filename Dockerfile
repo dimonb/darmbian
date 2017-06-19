@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN apt update
 
-RUN apt install -y qemu-system-arm bsdtar curl
+RUN apt install -y --no-install-recommends ca-certificates qemu-system-arm bsdtar curl apt-utils
 
 ENV ARCH=arm
 ENV CROSS_COMPILE=arm-linux-gnueabi-
@@ -14,10 +14,10 @@ COPY armbian.patch /rpi
 WORKDIR /rpi
 
 RUN \
-   apt install -y \
+   apt install -y --no-install-recommends \
    bc device-tree-compiler ncurses-dev build-essential \
    gcc-arm-linux-gnueabi && \  
-   curl -k -O https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.4.113.tar.gz \
+   curl -O https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.4.113.tar.gz \
    && bsdtar zxf linux-3.4.113.tar.gz && rm linux-3.4.113.tar.gz \
    && cd linux-3.4.113 && patch -p1 <../armbian.patch \
    && cp ../.config . && make oldconfig && make -j 4 all \
