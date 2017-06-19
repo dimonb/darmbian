@@ -12,6 +12,9 @@ ENV CROSS_COMPILE=arm-linux-gnueabi-
 COPY config /rpi/.config
 COPY armbian.patch /rpi
 
+RUN apt-get install -y --no-install-recommends bsdtar
+RUN export tar='bsdtar'
+
 WORKDIR /rpi
 RUN curl -O https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.4.113.tar.gz \
    && tar zxf linux-3.4.113.tar.gz && rm linux-3.4.113.tar.gz \
